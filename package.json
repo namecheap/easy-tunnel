@@ -1,22 +1,18 @@
 {
-  "name": "mytunnel",
+  "name": "@namecheap/easy-tunnel",
   "description": "Expose localhost to the world",
-  "version": "3.2.1",
+  "version": "1.0.0",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git://github.com/StyleT/mytunnel.git"
+    "url": "git://github.com/namecheap/easy-tunnel.git"
   },
-  "author": "Vladlen Fedosov <vlad.fedosov@gmail.com>",
-  "contributors": [
-    "Roman Shtylman <shtylman@gmail.com>",
-    "Gert Hengeveld <gert@hichroma.com>",
-    "Tom Coleman <tom@hichroma.com>"
-  ],
-  "main": "./localtunnel.js",
-  "types": "./localtunnel.d.ts",
+  "author": "Namecheap",
+  "contributors": [],
+  "main": "./easyTunnel.js",
+  "types": "./easyTunnel.d.ts",
   "bin": {
-    "lt": "bin/lt.js"
+    "et": "bin/et.js"
   },
   "scripts": {
     "test": "mocha --timeout 15000 --exit -- *.spec.js"
@@ -28,6 +24,7 @@
     "yargs": "16.2.0"
   },
   "devDependencies": {
+    "@types/node": "16.11.39",
     "chai": "^4.3.0",
     "chai-string": "^1.5.0",
     "mocha": "~8.2.1",

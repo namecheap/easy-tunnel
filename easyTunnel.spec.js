@@ -10,7 +10,7 @@ chai.use(require('chai-string'));
 const expect = chai.expect;
 const assert = require('assert');
 
-const localtunnel = require('./localtunnel');
+const easyTunnel = require('./easyTunnel');
 
 let fakePort;
 let testServer;
@@ -34,8 +34,8 @@ describe('localtunnel', () => {
         testServer.close();
     });
 
-    it('query localtunnel server w/ ident', async () => {
-        const tunnel = await localtunnel({ port: fakePort });
+    it('query easyTunnel server w/ ident', async () => {
+        const tunnel = await easyTunnel({ port: fakePort });
 
         try {
             await supertest(tunnel.url)
@@ -53,7 +53,7 @@ describe('localtunnel', () => {
         const subdomain = Math.random()
             .toString(36)
             .substr(2);
-        const tunnel = await localtunnel({ port: fakePort, subdomain });
+        const tunnel = await easyTunnel({ port: fakePort, subdomain });
         tunnel.close();
 
         expect(tunnel.url).to.startsWith(`https://${subdomain}.`);
@@ -61,7 +61,7 @@ describe('localtunnel', () => {
 
     describe('--local-host localhost', () => {
         it('override Host header with local-host', async () => {
-            const tunnel = await localtunnel({ port: fakePort, local_host: 'localhost' });
+            const tunnel = await easyTunnel({ port: fakePort, local_host: 'localhost' });
 
             try {
                 await supertest(tunnel.url)
@@ -78,7 +78,7 @@ describe('localtunnel', () => {
 
     describe('--local-host 127.0.0.1', () => {
         it('override Host header with local-host', async () => {
-            const tunnel = await localtunnel({ port: fakePort, local_host: '127.0.0.1' });
+            const tunnel = await easyTunnel({ port: fakePort, local_host: '127.0.0.1' });
 
             try {
                 await supertest(tunnel.url)
@@ -93,7 +93,7 @@ describe('localtunnel', () => {
         });
 
         it('send chunked request', async () => {
-            const tunnel = await localtunnel({ port: fakePort, local_host: '127.0.0.1' });
+            const tunnel = await easyTunnel({ port: fakePort, local_host: '127.0.0.1' });
 
             const parsed = url.parse(tunnel.url);
             const opt = {

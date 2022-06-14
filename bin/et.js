@@ -4,11 +4,11 @@
 const openurl = require('openurl');
 const yargs = require('yargs');
 
-const localtunnel = require('../localtunnel');
+const localtunnel = require('../easyTunnel');
 const { version } = require('../package');
 
 const { argv } = yargs
-  .usage('Usage: lt --port [num] <options>')
+  .usage('Usage: et --port [num] <options>')
   .env(true)
   .option('p', {
     alias: 'port',
