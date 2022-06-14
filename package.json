@@ -7,7 +7,7 @@
     "type": "git",
     "url": "git://github.com/namecheap/easy-tunnel.git"
   },
-  "author": "Namecheap",
+  "author": "Namecheap <opensource@namecheap.com>",
   "contributors": [],
   "main": "./easyTunnel.js",
   "types": "./easyTunnel.d.ts",
