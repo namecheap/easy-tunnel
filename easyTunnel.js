@@ -1,6 +1,6 @@
 const Tunnel = require('./lib/Tunnel');
 
-module.exports = function localtunnel(arg1, arg2, arg3) {
+module.exports = function easyTunnel(arg1, arg2, arg3) {
   const options = typeof arg1 === 'object' ? arg1 : { ...arg2, port: arg1 };
   const callback = typeof arg1 === 'object' ? arg2 : arg3;
   const client = new Tunnel(options);
