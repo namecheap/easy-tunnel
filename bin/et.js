@@ -49,10 +49,14 @@ const { argv } = yargs
   .option('print-requests', {
     describe: 'Print basic request info',
   })
+  .option('request-secure-tunnel', {
+    describe: 'Requests tunel server to create secure tunnel if it is available.',
+  })
   .require('port')
   .boolean('local-https')
   .boolean('allow-invalid-cert')
   .boolean('print-requests')
+  .boolean('request-secure-tunnel')
   .help('help', 'Show this help and exit')
   .version(version);
 
@@ -73,6 +77,7 @@ if (typeof argv.port !== 'number') {
     local_key: argv.localKey,
     local_ca: argv.localCa,
     allow_invalid_cert: argv.allowInvalidCert,
+    request_secure_tunnel: argv.requestSecureTunnel
   }).catch(err => {
     throw err;
   });
