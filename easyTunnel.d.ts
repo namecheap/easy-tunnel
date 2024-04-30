@@ -15,6 +15,7 @@ declare interface BootstrapOpts {
     local_ca?: string;
     allow_invalid_cert?: boolean;
     request_secure_tunnel?: boolean;
+    local_max_reconnect_count?: number;
 }
 
 declare const localtunnel: (opts: BootstrapOpts) => Promise<Tunnel>;

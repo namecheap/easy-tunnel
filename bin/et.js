@@ -52,6 +52,9 @@ const { argv } = yargs
   .option('request-secure-tunnel', {
     describe: 'Requests tunel server to create secure tunnel if it is available.',
   })
+  .option('local_max_reconnect_count', {
+    describe: 'Max number of reconnection retries to local server if it goes offline.',
+  })
   .require('port')
   .boolean('local-https')
   .boolean('allow-invalid-cert')
@@ -77,7 +80,8 @@ if (typeof argv.port !== 'number') {
     local_key: argv.localKey,
     local_ca: argv.localCa,
     allow_invalid_cert: argv.allowInvalidCert,
-    request_secure_tunnel: argv.requestSecureTunnel
+    request_secure_tunnel: argv.requestSecureTunnel,
+    local_max_reconnect_count: argv.local_max_reconnect_count
   }).catch(err => {
     throw err;
   });
