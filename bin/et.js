@@ -54,6 +54,7 @@ const { argv } = yargs
   })
   .option('local_max_reconnect_count', {
     describe: 'Max number of reconnection retries to local server if it goes offline.',
+    default: 90,
   })
   .require('port')
   .boolean('local-https')
