@@ -12,7 +12,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x, 14.x, 16.x]
+        node-version: [16.x, 18.x, 20.x]
 
     steps:
       - uses: actions/checkout@v3
@@ -21,4 +21,16 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: npm ci
+      - name: Checkout server
+        uses: actions/checkout@v3
+        with:
+          repository: namecheap/mytunnel-server
+          ref: master
+          path: server
+      - name: Start server
+        run: |
+          npm ci
+          npm run dev &
+          npx -y wait-on tcp:127.0.0.1:8087 --log
+        working-directory: server
       - run: npm test

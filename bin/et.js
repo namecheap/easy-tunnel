@@ -17,7 +17,7 @@ const { argv } = yargs
   .option('h', {
     alias: 'host',
     describe: 'Upstream server providing forwarding',
-    default: 'https://localtunnel.me',
+    default: 'http://localhost:8087',
   })
   .option('s', {
     alias: 'subdomain',
@@ -50,11 +50,20 @@ const { argv } = yargs
     describe: 'Print basic request info',
   })
   .option('request-secure-tunnel', {
-    describe: 'Requests tunel server to create secure tunnel if it is available.',
+    alias: 'secure',
+    describe: 'Requests tunnel server to create secure tunnel if it is available.',
   })
-  .option('local_max_reconnect_count', {
+  .option('local-max-retries', {
     describe: 'Max number of reconnection retries to local server if it goes offline.',
-    default: 90,
+    default: Infinity,
+  })
+  .option('connect-timeout', {
+    describe: 'Connection timeout (ms)',
+    default: 10_000,
+  })
+  .option('idle-timeout', {
+    describe: 'Idle socket timeout (ms)',
+    default: 15_000,
   })
   .require('port')
   .boolean('local-https')
@@ -82,7 +91,9 @@ if (typeof argv.port !== 'number') {
     local_ca: argv.localCa,
     allow_invalid_cert: argv.allowInvalidCert,
     request_secure_tunnel: argv.requestSecureTunnel,
-    local_max_reconnect_count: argv.local_max_reconnect_count
+    local_max_retries: argv.localMaxRetries,
+    connect_timeout: argv.connectTimeout,
+    idle_timeout: argv.idleTimeout
   }).catch(err => {
     throw err;
   });
