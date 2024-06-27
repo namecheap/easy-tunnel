@@ -267,8 +267,13 @@ describe('localtunnel', () => {
     remoteSocket.close();
   });
 
-  it('handle --connect-timeout on initial request', async () => {
+  it('handle --connect-timeout on initial request (ECONNREFUSED)', async () => {
     const tunnel = easyTunnel({ port: fakePort, host: 'http://8.8.8.8', connect_timeout: 2000 });
+    await assert.rejects(tunnel, { message: 'timeout of 2000ms exceeded' });
+  });
+
+  it('handle --connect-timeout on initial request (ETIMEDOUT)', async () => {
+    const tunnel = easyTunnel({ port: fakePort, host: 'http://172.30.68.144', connect_timeout: 2000 });
     await assert.rejects(tunnel, { message: 'timeout of 2000ms exceeded' });
   });
 
@@ -279,6 +284,7 @@ describe('localtunnel', () => {
       port: tunnelPort,
       max_conn_count: maxSockets,
       is_tunnel_secure: false,
+      remote_ip: '8.8.8.8',
       url: 'https://test.localhost',
     });
 
