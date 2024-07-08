@@ -1,7 +1,9 @@
 import {EventEmitter} from 'events';
 
-declare interface Tunnel extends EventEmitter {
+export declare interface Tunnel extends EventEmitter {
     url: string;
+    clientId: string;
+    close(): void;
 }
 
 declare interface BootstrapOpts {

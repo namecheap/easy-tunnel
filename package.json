@@ -15,7 +15,7 @@
     "et": "bin/et.js"
   },
   "scripts": {
-    "dev:client": "nodemon --inspect ./bin/et.js --port 3001 --host http://lvh.me:8087 --subdomain test --open --idle-timeout=6000000",
+    "dev:client": "nodemon --inspect ./bin/et.js --port 3001 --host http://lvh.me:8087 --subdomain test --open",
     "dev:backend": "nodemon server.js",
     "dev": "DEBUG=mytunnel:* concurrently --raw npm:dev:backend npm:dev:client",
     "test": "mocha --timeout 15000 --exit -- *.spec.js"
