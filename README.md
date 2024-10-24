@@ -116,3 +116,7 @@ _C#/.NET_ [localtunnel-client](https://github.com/angelobreuer/localtunnel-clien
 ## License
 
 MIT
+
+## Contributing
+
+- Commit message format must follow [Conventional Commits spec](https://www.conventionalcommits.org/en/v1.0.0/)
