@@ -105,7 +105,7 @@ describe('localtunnel', () => {
 
       const parsed = url.parse(tunnel.url);
       const opt = {
-        host: parsed.host,
+        host: parsed.hostname,
         port: 8087,
         headers: {
           host: parsed.hostname,

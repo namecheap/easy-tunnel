@@ -3,6 +3,7 @@
 
 const openurl = require('openurl');
 const yargs = require('yargs');
+console.log('🚀 ~ yargs:', yargs);
 
 const localtunnel = require('../easyTunnel');
 const { version } = require('../package');
@@ -93,7 +94,7 @@ if (typeof argv.port !== 'number') {
     request_secure_tunnel: argv.requestSecureTunnel,
     local_max_retries: argv.localMaxRetries,
     connect_timeout: argv.connectTimeout,
-    idle_timeout: argv.idleTimeout
+    idle_timeout: argv.idleTimeout,
   }).catch(err => {
     throw err;
   });
