@@ -3,7 +3,6 @@
 
 const openurl = require('openurl');
 const yargs = require('yargs');
-console.log('🚀 ~ yargs:', yargs);
 
 const localtunnel = require('../easyTunnel');
 const { version } = require('../package');
