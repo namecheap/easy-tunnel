@@ -148,7 +148,7 @@ describe('localtunnel', () => {
       max_conn_count: maxSockets,
       is_tunnel_secure: false,
       ip: '127.0.0.1',
-      url: 'https://test.localhost',
+      url: 'https://test.lvh.me',
     });
 
     const remoteSocket = net.createServer();
@@ -169,7 +169,7 @@ describe('localtunnel', () => {
       port: tunnelPort,
       max_conn_count: maxSockets,
       is_tunnel_secure: true,
-      ip: '127.0.0.1',
+      ip: 'tunnel.lvh.me',
       url: 'https://localhost',
     });
 
@@ -508,5 +508,21 @@ describe('localtunnel', () => {
         .then(_tunnel => (tunnel = _tunnel))
         .catch(done);
     });
+  });
+
+  it('should properly close the tunnel', async () => {
+    const tunnel = await easyTunnel({ port: fakePort, host: 'http://lvh.me:8087' });
+
+    // Setup event listener to check if close event is emitted
+    let closeEventEmitted = false;
+    tunnel.on('close', () => {
+      closeEventEmitted = true;
+    });
+
+    tunnel.close();
+    expect(tunnel.closed).to.be.true;
+    expect(closeEventEmitted).to.be.true;
+    const activeHandles = process._getActiveHandles().filter(h => h instanceof setTimeout.constructor);
+    expect(activeHandles.length).to.equal(0, 'Expected no timer handles to remain after closing the tunnel');
   });
 });
